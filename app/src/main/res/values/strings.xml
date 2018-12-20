@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Workout</string>
+    <string name="workout_detail_title">Название упражнения</string>
+
+    <string name="workout_detail_subtitle_attempts">число подходов</string>
+    <string name="workout_detail_subtitle_repeated">число повторов</string>
+    <string name="workout_detail_error_repeat">В минус залезть нельзя!</string>
+
+    <string name="workout_detail_subtitle_timer">таймер</string>
+    <string name="workout_detail_timer_stop_button">Стоп</string>
+    <string name="workout_detail_timer_reset_button">Сброс</string>
+    <string name="workout_detail_timer_start_button">Старт</string>
+
+    <string name="workout_detail_subtitle_record">ваш рекорд</string>
+    <string name="workout_detail_error_record">Для фиксации рекорда результат должен быть лучше!</string>
+    <string name="workout_detail_record_attempts">Подходов:</string>
+    <string name="workout_detail_record_repeats">Повторов:</string>
+    <string name="workout_detail_record_timer">Затраченное время:</string>
+    <string name="workout_detail_record_date">Дата:</string>
+    <string name="workout_detail_record_share">Поделиться</string>
+    <string name="workput_detail_choose_sender_record">Способ отправки</string>
+    <string name="workput_detail_record_message">Я поставил новый рекорд!</string>
+    <string name="workput_detail_error_send_message">В системе нет сервисов для отправки сообщений</string>
+
+    <string name="workout_detail_subtitle_description">правила выполнения</string>
+    <string name="workout_detail_description">Здесь описание правильного выполнения упражнения.</string>
+
+    <string name="workout_list_title">Выбор упражнения</string>
+    <string name="workout_list_is_empty">Список упражнений пуст</string>
+    <string name="workout_list_previous_record_area_title">Предыдущий рекорд</string>
+    <string name="workout_list_added_favorites">Добавлено в избранное</string>
+    <string name="workout_list_deleted">Удалено</string>
+    <string name="workout_detail_error_choose_exercise">Упражнение еще не добавлено в приложение.</string>
+
+    <string name="workout_add_exercise_title">Название упражнения</string>
+    <string name="workout_add_exercise_url">URL картинки</string>
+    <string name="workout_add_exercise_description">Описание</string>
+    <string name="workout_add_exercise_button_add">Добавить</string>
+    <string name="workout_add_error_exercise">Все поля должны быть заполнены!</string>
+
+    <string name="workout_item_menu_favorites">Избранное</string>
+    <string name="workout_item_menu_delete">Удалить</string>
+    <string name="workout_list_main_autotimer">Включать секундомер при первом повторении</string>
+    <string name="workout_list_main_view_favorites">Отображать только избранное</string>
+    <string name="workout_list_main_add_exercise">Добавить упражнение</string>
+
+</resources>

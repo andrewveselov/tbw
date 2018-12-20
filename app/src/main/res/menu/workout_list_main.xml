@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.WorkoutFragment">
+<group>
+    <item
+        android:id="@+id/workout_list_main_auto_timer"
+        android:checkable="true"
+        android:checked="false"
+        android:title="@string/workout_list_main_autotimer"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/workout_list_main_show_favorites"
+        android:checkable="true"
+        android:checked="false"
+        android:title="@string/workout_list_main_view_favorites"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/workout_list_main_add_ex"
+        android:title="@string/workout_list_main_add_exercise"
+        app:showAsAction="never"/>
+
+</group>
+</menu>
