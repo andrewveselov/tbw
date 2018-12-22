@@ -1,12 +1,15 @@
 package com.veselov.andrew.tbw.ui.activities.fragments;
-// Android Level 1 Lesson 8
-// Homework 05-Jul-2018
+// Android Level 2 Lesson 1
+// Homework 20-Dec-2018
 // Andrew Veselov
 //
-// 1. Добавить во второй фрагмент вложенный фрагмент; (уже сделано в прошлом ДЗ)
+// 1. Создать tool bar для приложения с меню. Подумать, какие пункты меню вам нужны.
 //
-// 2. *Создать разные ресурсы для портретной и ландшафтной ориентации (чтобы в портретной
-//     ориентации отображать экраны по очереди и в ландшафтной - список упражнений и детали упражнения рядом).
+// 2. Добавить в проект Navigation Drawer. В Drawer добавить Header с аватаром пользователя,
+//    а также несколько пунктов: «О разработчике», «Форма обратной связи» + пункты на ваше усмотрение.
+//    При нажатии на пункты должны открываться соответствующие фрагменты с содержимым.
+//
+//3. * Добавить цветовую индикацию пунктов Drawer, чтобы всегда подсвечивался тот пункт, который выбран.
 //
 
 import android.content.Context;
@@ -94,9 +97,10 @@ public class WorkoutListFragment extends Fragment {
                 showListWorkouts(root);
                 return super.onOptionsItemSelected(item);
             case R.id.workout_list_main_add_ex:
-                FragmentManager fragmentManager = getFragmentManager();
-                WorkoutAddExerciseFragment addExerciseFragment = new WorkoutAddExerciseFragment();
-                fragmentManager.beginTransaction().replace(R.id.container,addExerciseFragment).addToBackStack(null).commit();
+//                FragmentManager fragmentManager = getFragmentManager();
+//                WorkoutAddExerciseFragment addExerciseFragment = new WorkoutAddExerciseFragment();
+//                fragmentManager.beginTransaction().replace(R.id.container,addExerciseFragment).addToBackStack(null).commit();
+                noWorking();
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
@@ -297,6 +301,11 @@ public class WorkoutListFragment extends Fragment {
             workoutRecyclerTitle.setText(getString(R.string.workout_list_is_empty));
         }
     }
+
+    private void noWorking(){
+        Toast.makeText(getContext(), "Пока не работает.", Toast.LENGTH_SHORT).show();
+    }
+
 
     // For testing lifecircles
     @Override

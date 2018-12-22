@@ -44,4 +44,6 @@
     <string name="workout_list_main_view_favorites">Отображать только избранное</string>
     <string name="workout_list_main_add_exercise">Добавить упражнение</string>
 
+    <string name="workout_navi_user_name">Имя пользователя</string>
+
 </resources>
