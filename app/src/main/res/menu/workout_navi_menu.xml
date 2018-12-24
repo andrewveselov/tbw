@@ -6,10 +6,10 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_about"
-            android:title="О разработчике" />
+            android:title="@string/nav_about" />
         <item
             android:id="@+id/nav_feedback"
-            android:title="Обратная связь" />
+            android:title="@string/nav_feedback" />
     </group>
 
 </menu>

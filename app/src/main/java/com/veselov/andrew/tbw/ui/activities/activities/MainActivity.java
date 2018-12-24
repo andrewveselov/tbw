@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.veselov.andrew.tbw.R;
 import com.veselov.andrew.tbw.interfaces.OnWorkoutListItemSelectedListener;
+import com.veselov.andrew.tbw.ui.activities.fragments.WorkoutAboutFragment;
 import com.veselov.andrew.tbw.ui.activities.fragments.WorkoutDetailFragment;
 import com.veselov.andrew.tbw.ui.activities.fragments.WorkoutListFragment;
 
@@ -76,14 +77,14 @@ public class MainActivity extends AppCompatActivity implements OnWorkoutListItem
         int id = item.getItemId();
 
         if (id == R.id.nav_about) {
-//            fragmentManager = getSupportFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.port_container, listFragment).commit();
-            Toast.makeText(this, "test1", Toast.LENGTH_SHORT).show();
+            fragmentManager = getSupportFragmentManager();
+            WorkoutAboutFragment workoutAboutFragment = new WorkoutAboutFragment();
+            fragmentManager.beginTransaction().replace(R.id.port_container, workoutAboutFragment).addToBackStack(null).commit();
         } else if (id == R.id.nav_feedback) {
-            Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Feedback pressed.", Toast.LENGTH_SHORT).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

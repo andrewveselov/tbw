@@ -10,6 +10,11 @@
     tools:openDrawer="start"
     tools:ignore="MissingDefaultResource">
 
+    <include
+        layout="@layout/app_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -19,23 +24,4 @@
         app:headerLayout="@layout/fragment_nav_header_main"
         app:menu="@menu/workout_navi_menu" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/Toolbar" />
-
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/port_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.activities.activities.MainActivity">
-
-        </FrameLayout>
-    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>
