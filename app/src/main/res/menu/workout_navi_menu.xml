@@ -8,8 +8,8 @@
             android:id="@+id/nav_about"
             android:title="@string/nav_about" />
         <item
-            android:id="@+id/nav_feedback"
-            android:title="@string/nav_feedback" />
+            android:id="@+id/nav_tempandhum"
+            android:title="@string/nav_tempandhum" />
     </group>
 
 </menu>
