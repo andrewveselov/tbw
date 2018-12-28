@@ -46,11 +46,16 @@
 
     <string name="workout_navi_user_name">Имя пользователя</string>
     <string name="nav_about">О разработчике</string>
-    <string name="nav_feedback">Обратная связь</string>
+    <string name="nav_tempandhum">Данные температуры и влажности</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_about">О разработчике</string>
     <string name="message_about">Описание разработчика</string>
+    <string name="title_sensors_data">Данные датчиков</string>
+    <string name="sensor_hum_not_connected">Датчик влажности не подключен.</string>
+    <string name="sensor_temp_not_connected">Датчик температуры не подключен.</string>
+    <string name="sensor_temp_value">Температура:</string>
+    <string name="sensor_hum_value">Влажность:</string>
+    <string name="sensor_temp_unit">°С</string>
+    <string name="sensor_hum_unit"> %</string>
 
 </resources>
