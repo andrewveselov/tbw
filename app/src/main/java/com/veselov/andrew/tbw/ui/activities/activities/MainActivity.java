@@ -1,13 +1,9 @@
 package com.veselov.andrew.tbw.ui.activities.activities;
-// Android Level 2 Lesson 2
-// Homework 22-Dec-2018
+// Android Level 2 Lesson 3
+// Homework 26-Dec-2018
 // Andrew Veselov
 //
-// 1. Добавить датчики температуры и влажности (TYPE_AMBIENT_TEMPERATURE, TYPE_ABSOLUTE_HUMIDITY).
-//    Показывать текущую температуру, влажность в погодном приложении (если такой датчик присутствует
-//    в аппарате).
-//
-// 2. * Создать свой элемент View и использовать его в погодном приложении.
+// 1. Создать приложение с любой тяжелой обработкой на основе AsyncTask.
 //
 
 import android.content.res.Configuration;
@@ -26,6 +22,7 @@ import com.veselov.andrew.tbw.interfaces.OnWorkoutListItemSelectedListener;
 import com.veselov.andrew.tbw.ui.activities.fragments.TempAndHum;
 import com.veselov.andrew.tbw.ui.activities.fragments.WorkoutAboutFragment;
 import com.veselov.andrew.tbw.ui.activities.fragments.WorkoutDetailFragment;
+import com.veselov.andrew.tbw.ui.activities.fragments.WorkoutExternalPageFragment;
 import com.veselov.andrew.tbw.ui.activities.fragments.WorkoutListFragment;
 
 public class MainActivity extends AppCompatActivity implements OnWorkoutListItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
@@ -90,6 +87,13 @@ public class MainActivity extends AppCompatActivity implements OnWorkoutListItem
                 fragmentManager.beginTransaction().replace(R.id.land_detail_container, tempAndHum).commit();
             }
 
+        } else if (id == R.id.nav_external_web) {
+            WorkoutExternalPageFragment workoutExternalPageFragment = new WorkoutExternalPageFragment();
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                fragmentManager.beginTransaction().replace(R.id.port_container, workoutExternalPageFragment).addToBackStack(null).commit();
+            } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                fragmentManager.beginTransaction().replace(R.id.land_detail_container, workoutExternalPageFragment).commit();
+            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

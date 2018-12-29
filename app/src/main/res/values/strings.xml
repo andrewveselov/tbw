@@ -58,4 +58,8 @@
     <string name="sensor_temp_unit">°С</string>
     <string name="sensor_hum_unit"> %</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_external_web">Открыть внешний web-ресурс</string>
+
 </resources>
