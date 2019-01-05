@@ -50,7 +50,7 @@
 
     <string name="title_about">О разработчике</string>
     <string name="message_about">Описание разработчика</string>
-    <string name="title_sensors_data">Данные датчиков</string>
+    <string name="title_sensors_data">Данные встроенных датчиков</string>
     <string name="sensor_hum_not_connected">Датчик влажности не подключен.</string>
     <string name="sensor_temp_not_connected">Датчик температуры не подключен.</string>
     <string name="sensor_temp_value">Температура:</string>
@@ -58,8 +58,22 @@
     <string name="sensor_temp_unit">°С</string>
     <string name="sensor_hum_unit"> %</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open_external_web">Открыть внешний web-ресурс</string>
+    <string name="weather_city_change_menu">Изменить город</string>
+    <string name="weather_city_title">Погода на улице</string>
+
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
+    <string name="select_city">Выбор населенного пункта</string>
+    <string name="change_city">Выбрать</string>
+    <string name="default_city">Yekaterinburg</string>
+    <string name="city_not_found">Населенный пункт не найден</string>
+
 
 </resources>

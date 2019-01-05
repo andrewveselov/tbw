@@ -1,9 +1,11 @@
 package com.veselov.andrew.tbw.ui.activities.fragments;
-// Android Level 2 Lesson 3
-// Homework 26-Dec-2018
+// Android Level 2 Lesson 4
+// Homework 30-Dec-2018
 // Andrew Veselov
 //
-// 1. Создать приложение с любой тяжелой обработкой на основе AsyncTask.
+// 1. В погодном приложении сделать сохранение и загрузку настроек (например, выбранный домашний город).
+//
+// 2. * Сделать текстовый мини-браузер с применением WebView, OkHttp и полем ввода страницы.
 //
 
 import android.content.Context;
