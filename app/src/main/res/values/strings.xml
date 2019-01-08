@@ -75,5 +75,8 @@
     <string name="default_city">Yekaterinburg</string>
     <string name="city_not_found">Населенный пункт не найден</string>
 
+    <string name="go_btn">go</string>
+    <string name="ext_page_hint_ent_address">Введите адрес</string>
+
 
 </resources>

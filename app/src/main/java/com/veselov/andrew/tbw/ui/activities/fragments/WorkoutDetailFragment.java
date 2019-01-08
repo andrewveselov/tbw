@@ -194,7 +194,7 @@ public class WorkoutDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // For testing SharedPreferences
-                SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_WORLD_WRITEABLE);
+                SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
                 if (preferences.getBoolean(Constants.WORKOUT_STOPWATCH_AUTO_START,true)) WorkoutTimerFragment.timerRunning = true; // Starting timer (if its not already running)
                 workout.incRepeatCount();
                 saveRecordButton.setText(String.valueOf(workout.getRepeatCount()));

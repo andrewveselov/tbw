@@ -66,7 +66,7 @@ public class WorkoutListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.workout_list_main, menu);
-        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         MenuItem timer = menu.findItem(R.id.workout_list_main_auto_timer);
         MenuItem favorites = menu.findItem(R.id.workout_list_main_show_favorites);
         timer.setChecked(preferences.getBoolean(Constants.WORKOUT_STOPWATCH_AUTO_START,true));
@@ -76,7 +76,7 @@ public class WorkoutListFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = preferences.edit();
         switch (item.getItemId()) {
             case R.id.workout_list_main_auto_timer:
@@ -178,7 +178,7 @@ public class WorkoutListFragment extends Fragment {
                     .into(holder.imageItemPicture);
 
             // Show menu if not favorites
-            SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_WORLD_WRITEABLE);
+            SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
             if (!preferences.getBoolean(Constants.WORKOUT_FAVORITES,false)) {
                 holder.imageItemMenu.setVisibility(View.VISIBLE);
             }
@@ -276,7 +276,7 @@ public class WorkoutListFragment extends Fragment {
 
     // Method showing list of workouts
     private void showListWorkouts(View root) {
-        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         if (preferences.getBoolean(Constants.WORKOUT_FAVORITES,false)) {
             workoutAdapter = new WorkoutAdapter(WorkoutList.getInstance().getFavoritsWorkouts(), getContext());
             workouts = WorkoutList.getInstance().getFavoritsWorkouts();

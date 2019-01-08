@@ -114,7 +114,7 @@ public class TempAndHum extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 String city = input.getText().toString();
                 updateWeatherData(city);
-                SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_WORLD_WRITEABLE);
+                SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString(Constants.WEATHER_CITY, city);
                 editor.apply();
@@ -142,7 +142,7 @@ public class TempAndHum extends Fragment {
     }
 
     private void checkSavedCity() {
-        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         String city = preferences.getString(Constants.WEATHER_CITY, getString(R.string.default_city));
         updateWeatherData(city);
     }
