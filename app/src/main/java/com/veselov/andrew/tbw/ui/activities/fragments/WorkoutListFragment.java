@@ -8,6 +8,7 @@ package com.veselov.andrew.tbw.ui.activities.fragments;
 // 2. * Сделать текстовый мини-браузер с применением WebView, OkHttp и полем ввода страницы.
 //
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import com.squareup.picasso.Picasso;
 import com.veselov.andrew.tbw.interfaces.OnWorkoutListItemSelectedListener;
@@ -66,7 +68,7 @@ public class WorkoutListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.workout_list_main, menu);
-        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+        SharedPreferences preferences = Objects.requireNonNull(getContext()).getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         MenuItem timer = menu.findItem(R.id.workout_list_main_auto_timer);
         MenuItem favorites = menu.findItem(R.id.workout_list_main_show_favorites);
         timer.setChecked(preferences.getBoolean(Constants.WORKOUT_STOPWATCH_AUTO_START,true));
@@ -76,7 +78,7 @@ public class WorkoutListFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+        SharedPreferences preferences = Objects.requireNonNull(getContext()).getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = preferences.edit();
         switch (item.getItemId()) {
             case R.id.workout_list_main_auto_timer:
@@ -167,7 +169,7 @@ public class WorkoutListFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final WorkoutViewHolder holder, final int position) {
+        public void onBindViewHolder(@NonNull final WorkoutViewHolder holder, @SuppressLint("RecyclerView") final int position) {
             Workout workout = workouts.get(position);
             holder.textViewItemTitle.setText(workout.getTitle());
             holder.textViewItemDescription.setText(workout.getDescription());
@@ -178,7 +180,7 @@ public class WorkoutListFragment extends Fragment {
                     .into(holder.imageItemPicture);
 
             // Show menu if not favorites
-            SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+            SharedPreferences preferences = Objects.requireNonNull(getContext()).getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
             if (!preferences.getBoolean(Constants.WORKOUT_FAVORITES,false)) {
                 holder.imageItemMenu.setVisibility(View.VISIBLE);
             }

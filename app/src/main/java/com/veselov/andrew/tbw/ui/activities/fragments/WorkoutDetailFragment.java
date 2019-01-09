@@ -40,6 +40,7 @@ import com.veselov.andrew.tbw.utils.Constants;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class WorkoutDetailFragment extends Fragment {
     // Title
@@ -83,6 +84,7 @@ public class WorkoutDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        assert getArguments() != null;
         workoutIndex = getArguments().getInt(Constants.WORKOUT_INDEX, 0);
     }
 
@@ -120,7 +122,7 @@ public class WorkoutDetailFragment extends Fragment {
         // Check a non-existent exercise
         if (workout == null) {
             Toast.makeText(getContext(), getString(R.string.workout_detail_error_choose_exercise), Toast.LENGTH_SHORT).show();
-            getActivity().onBackPressed();
+            Objects.requireNonNull(getActivity()).onBackPressed();
         }
         else {
             // Define all areas
@@ -194,7 +196,7 @@ public class WorkoutDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // For testing SharedPreferences
-                SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+                SharedPreferences preferences = Objects.requireNonNull(getContext()).getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
                 if (preferences.getBoolean(Constants.WORKOUT_STOPWATCH_AUTO_START,true)) WorkoutTimerFragment.timerRunning = true; // Starting timer (if its not already running)
                 workout.incRepeatCount();
                 saveRecordButton.setText(String.valueOf(workout.getRepeatCount()));

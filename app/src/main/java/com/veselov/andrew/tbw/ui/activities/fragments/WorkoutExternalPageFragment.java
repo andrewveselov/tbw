@@ -8,8 +8,10 @@ package com.veselov.andrew.tbw.ui.activities.fragments;
 // 2. * Сделать текстовый мини-браузер с применением WebView, OkHttp и полем ввода страницы.
 //
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,8 +38,9 @@ public class WorkoutExternalPageFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_workout_external_page, container, false);
         final WebView webView = root.findViewById(R.id.ext_page_browse);

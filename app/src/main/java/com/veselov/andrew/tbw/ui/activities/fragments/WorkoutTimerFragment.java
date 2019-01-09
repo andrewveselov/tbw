@@ -10,6 +10,7 @@ package com.veselov.andrew.tbw.ui.activities.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -115,7 +116,7 @@ public class WorkoutTimerFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         savedInstanceState.putInt(KEY_TIMER_SECONDS, timerSeconds);
         savedInstanceState.putBoolean(KEY_TIMER_RUNNING, timerRunning);
         savedInstanceState.putBoolean(KEY_TIMER_WAS_RUNNING, timerWasRunning);

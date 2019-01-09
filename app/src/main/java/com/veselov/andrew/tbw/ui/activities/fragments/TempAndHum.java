@@ -18,6 +18,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.view.Menu;
@@ -40,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.Objects;
 
 
 public class TempAndHum extends Fragment {
@@ -54,12 +56,8 @@ public class TempAndHum extends Fragment {
     private TextView currentTemperatureTextView;
     private TextView weatherIconTextView;
 
-    public TempAndHum() {
-        // Required empty public constructor
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_temp_and_hum, container, false);
 
@@ -67,9 +65,10 @@ public class TempAndHum extends Fragment {
         checkSavedCity();
         setHasOptionsMenu(true);
         // Define sensor manager
-        sensorManager = (SensorManager) getActivity().getSystemService(getContext().SENSOR_SERVICE);
+        sensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(getContext().SENSOR_SERVICE);
 
         // Check temperature and humidity sensors
+        assert sensorManager != null;
         sensorHum = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         sensorTemp = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
         // sensorHum = null;
@@ -103,7 +102,7 @@ public class TempAndHum extends Fragment {
         return true;
     }
     private void showInputDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
         builder.setTitle(R.string.select_city);
 
         final EditText input = new EditText(getContext());
@@ -137,12 +136,12 @@ public class TempAndHum extends Fragment {
         cityTextView = view.findViewById(R.id.weather_city);
         currentTemperatureTextView = view.findViewById(R.id.weather_current_temp);
         weatherIconTextView = view.findViewById(R.id.weather_icon);
-        weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weather.ttf");
+        weatherFont = Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/weather.ttf");
         weatherIconTextView.setTypeface(weatherFont);
     }
 
     private void checkSavedCity() {
-        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+        SharedPreferences preferences = Objects.requireNonNull(getContext()).getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
         String city = preferences.getString(Constants.WEATHER_CITY, getString(R.string.default_city));
         updateWeatherData(city);
     }
@@ -151,7 +150,7 @@ public class TempAndHum extends Fragment {
         new Thread() {
             @Override
             public void run() {
-                final JSONObject jsonObject = OpenWeatherMapGetter.getJSONData(getActivity().getApplicationContext(), city);
+                final JSONObject jsonObject = OpenWeatherMapGetter.getJSONData(Objects.requireNonNull(getActivity()).getApplicationContext(), city);
                 if(jsonObject == null) {
                     handler.post(new Runnable() {
                         @Override

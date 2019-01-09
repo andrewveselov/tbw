@@ -38,11 +38,11 @@ public class WorkoutAddExerciseFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_add_exercise,container,false);
-        Button button = (Button) root.findViewById(R.id.workout_add_exercise_button);
+        Button button = root.findViewById(R.id.workout_add_exercise_button);
         button.setOnClickListener(onClickListener);
-        workoutTitle = (EditText) root.findViewById(R.id.workout_add_exercise_title);
-        workoutDescription = (EditText) root.findViewById(R.id.workout_add_exercise_description);
-        workoutURL = (EditText) root.findViewById(R.id.workout_add_exercise_url);
+        workoutTitle = root.findViewById(R.id.workout_add_exercise_title);
+        workoutDescription = root.findViewById(R.id.workout_add_exercise_description);
+        workoutURL = root.findViewById(R.id.workout_add_exercise_url);
         return root;
     }
 
