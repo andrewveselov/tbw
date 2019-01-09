@@ -1,13 +1,16 @@
 package com.veselov.andrew.tbw.ui.activities.fragments;
-// Android Level 2 Lesson 3
-// Homework 26-Dec-2018
+// Android Level 2 Lesson 4
+// Homework 30-Dec-2018
 // Andrew Veselov
 //
-// 1. Создать приложение с любой тяжелой обработкой на основе AsyncTask.
+// 1. В погодном приложении сделать сохранение и загрузку настроек (например, выбранный домашний город).
+//
+// 2. * Сделать текстовый мини-браузер с применением WebView, OkHttp и полем ввода страницы.
 //
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -113,7 +116,7 @@ public class WorkoutTimerFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         savedInstanceState.putInt(KEY_TIMER_SECONDS, timerSeconds);
         savedInstanceState.putBoolean(KEY_TIMER_RUNNING, timerRunning);
         savedInstanceState.putBoolean(KEY_TIMER_WAS_RUNNING, timerWasRunning);

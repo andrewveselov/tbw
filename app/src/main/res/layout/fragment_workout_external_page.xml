@@ -4,21 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!-- здесь отображается прогресс и статус -->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ext_page_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textUri"
+            android:hint="@string/ext_page_hint_ent_address" />
+        <Button
+            android:id="@+id/ext_page_go_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/go_btn" />
+    </LinearLayout>
+
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/ext_page_progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true" />
+        android:indeterminate="false" />
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OK" />
-    <!-- сама страница -->
+        android:visibility="gone"/>
+
     <WebView
-        android:id="@+id/browse"
+        android:id="@+id/ext_page_browse"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>
