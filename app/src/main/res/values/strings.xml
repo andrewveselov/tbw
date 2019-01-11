@@ -72,11 +72,16 @@
     <string name="weather_drizzle">&#xf01c;</string>
     <string name="select_city">Выбор населенного пункта</string>
     <string name="change_city">Выбрать</string>
+    <string name="define_city">Определить</string>
+
     <string name="default_city">Yekaterinburg</string>
     <string name="city_not_found">Населенный пункт не найден</string>
+    <string name="city_not_determined">Не удалось определить населенный пункт</string>
 
     <string name="go_btn">go</string>
     <string name="ext_page_hint_ent_address">Введите адрес</string>
+    <string name="no_permission_for_location">Предоставьте права для определения местаположения и повторите попытку</string>
+    <string name="city_not_define">Город не выбран</string>
 
 
 </resources>
