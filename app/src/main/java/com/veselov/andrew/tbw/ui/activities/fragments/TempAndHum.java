@@ -1,24 +1,31 @@
 package com.veselov.andrew.tbw.ui.activities.fragments;
-// Android Level 2 Lesson 4
-// Homework 30-Dec-2018
+// Android Level 2 Lesson 5
+// Homework 09-Jan-2019
 // Andrew Veselov
 //
-// 1. В погодном приложении сделать сохранение и загрузку настроек (например, выбранный домашний город).
+// 1. Посвятите это время работе над вашим проектом. Ваше портфолио - это ваше лицо для будущих работодателей.
 //
-// 2. * Сделать текстовый мини-браузер с применением WebView, OkHttp и полем ввода страницы.
+// 2. Доделайте те задания, которые не успели сделать к предыдущим урокам.
+//
+// 3*. Добавьте в ваш проект какие-нибудь новые фичи на ваше усмотрение.
 //
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.view.Menu;
@@ -51,10 +58,11 @@ public class TempAndHum extends Fragment {
 
     private final Handler handler = new Handler();
 
-    private Typeface weatherFont;
     private TextView cityTextView;
     private TextView currentTemperatureTextView;
     private TextView weatherIconTextView;
+    private LocationManager locationManager = null;
+    private Location location;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -66,6 +74,9 @@ public class TempAndHum extends Fragment {
         setHasOptionsMenu(true);
         // Define sensor manager
         sensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(getContext().SENSOR_SERVICE);
+
+        // Define location manager and current location
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         // Check temperature and humidity sensors
         assert sensorManager != null;
@@ -89,11 +100,10 @@ public class TempAndHum extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.weather_city_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -101,6 +111,7 @@ public class TempAndHum extends Fragment {
         showInputDialog();
         return true;
     }
+
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
         builder.setTitle(R.string.select_city);
@@ -113,14 +124,33 @@ public class TempAndHum extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 String city = input.getText().toString();
                 updateWeatherData(city);
-                SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString(Constants.WEATHER_CITY, city);
-                editor.apply();
             }
         });
+
+        builder.setNeutralButton(R.string.define_city, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                } else {
+                    Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(), R.string.no_permission_for_location, Toast.LENGTH_LONG).show();
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Constants.REQUEST_CODE_PERMISSION_FINE_LOCATION);
+                    return;
+                }
+
+                if (location != null) {
+//                    Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(), String.valueOf(location.getLatitude()) + " " + String.valueOf(location.getLongitude()), Toast.LENGTH_LONG).show();
+                    updateWeatherData(location.getLatitude(), location.getLongitude());
+                } else
+                    Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(), R.string.city_not_determined, Toast.LENGTH_LONG).show();
+            }
+        });
+
         builder.show();
     }
+
     // Save energy when minimized application
     @Override
     public void onPause() {
@@ -130,13 +160,13 @@ public class TempAndHum extends Fragment {
     }
 
     // Init
-    private void init(View view){
+    private void init(View view) {
         textHum = view.findViewById(R.id.sensor_hum);
         textTemp = view.findViewById(R.id.sensor_temp);
         cityTextView = view.findViewById(R.id.weather_city);
         currentTemperatureTextView = view.findViewById(R.id.weather_current_temp);
         weatherIconTextView = view.findViewById(R.id.weather_icon);
-        weatherFont = Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/weather.ttf");
+        Typeface weatherFont = Typeface.createFromAsset(Objects.requireNonNull(getActivity()).getAssets(), "fonts/weather.ttf");
         weatherIconTextView.setTypeface(weatherFont);
     }
 
@@ -146,12 +176,43 @@ public class TempAndHum extends Fragment {
         updateWeatherData(city);
     }
 
+    private void saveCity(String city) {
+        SharedPreferences preferences = getContext().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(Constants.WEATHER_CITY, city);
+        editor.apply();
+    }
+
     private void updateWeatherData(final String city) {
         new Thread() {
             @Override
             public void run() {
                 final JSONObject jsonObject = OpenWeatherMapGetter.getJSONData(Objects.requireNonNull(getActivity()).getApplicationContext(), city);
-                if(jsonObject == null) {
+                if (jsonObject == null) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity().getApplicationContext(), R.string.city_not_found, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            renderWeather(jsonObject);
+                        }
+                    });
+                }
+            }
+        }.start();
+    }
+
+    private void updateWeatherData(final double lat, final double lon) {
+        new Thread() {
+            @Override
+            public void run() {
+                final JSONObject jsonObject = OpenWeatherMapGetter.getJSONData(Objects.requireNonNull(getActivity()).getApplicationContext(), lat, lon);
+                if (jsonObject == null) {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -189,9 +250,9 @@ public class TempAndHum extends Fragment {
         int id = actualId / 100;
         String icon = "";
 
-        if(actualId == 800) {
+        if (actualId == 800) {
             long currentTime = new Date().getTime();
-            if(currentTime >= sunrise && currentTime < sunset) {
+            if (currentTime >= sunrise && currentTime < sunset) {
                 icon = getString(R.string.weather_sunny);
             } else {
                 icon = getString(R.string.weather_clear_night);
@@ -227,17 +288,16 @@ public class TempAndHum extends Fragment {
         weatherIconTextView.setText(icon);
     }
 
-
     private void setCurrentTemp(JSONObject main) throws JSONException {
         String currentTextText = String.format("%.2f", main.getDouble("temp")) + "\u2103";
         currentTemperatureTextView.setText(currentTextText);
     }
 
-
     private void setPlaceName(JSONObject jsonObject) throws JSONException {
         String cityText = jsonObject.getString("name").toUpperCase() + ", "
                 + jsonObject.getJSONObject("sys").getString("country");
         cityTextView.setText(cityText);
+        saveCity(cityText);
     }
 
     // Show temperature and humidity sensor values
@@ -254,7 +314,6 @@ public class TempAndHum extends Fragment {
                 .append(getString(R.string.sensor_hum_unit));
         textHum.setText(stringBuilder);
     }
-
 
     // Temperature sensor listener
     SensorEventListener listenerTemp = new SensorEventListener() {
@@ -281,5 +340,4 @@ public class TempAndHum extends Fragment {
             showHumSensors(event);
         }
     };
-
 }

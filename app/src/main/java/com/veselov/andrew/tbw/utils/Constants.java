@@ -7,5 +7,6 @@ public interface Constants {
     String WORKOUT_FAVORITES = "show_favorites";
     String SHARED_PREFERENCES_FILE="tbw_preferences";
     String WEATHER_CITY="weather_city";
+    int REQUEST_CODE_PERMISSION_FINE_LOCATION = 2;
 
 }

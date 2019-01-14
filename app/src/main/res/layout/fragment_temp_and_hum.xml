@@ -21,13 +21,12 @@
             android:id="@+id/weather_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="city"
+            android:text="@string/city_not_define"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/weather_icon"
             android:layout_width="wrap_content"
-            android:text="icon"
             android:layout_height="wrap_content"
             android:textSize="24sp"/>
 
@@ -35,7 +34,6 @@
             android:id="@+id/weather_current_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="temp"
             android:textSize="24sp"/>
 
         <TextView
