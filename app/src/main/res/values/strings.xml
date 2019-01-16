@@ -76,12 +76,13 @@
 
     <string name="default_city">Yekaterinburg</string>
     <string name="city_not_found">Населенный пункт не найден</string>
-    <string name="city_not_determined">Не удалось определить населенный пункт</string>
+    <string name="city_not_determined">Не удалось определить населенный пункт, повторите попытку</string>
 
     <string name="go_btn">go</string>
     <string name="ext_page_hint_ent_address">Введите адрес</string>
     <string name="no_permission_for_location">Предоставьте права для определения местаположения и повторите попытку</string>
     <string name="city_not_define">Город не выбран</string>
+    <string name="error_get_data">Ошибка получения данных!</string>
 
 
 </resources>

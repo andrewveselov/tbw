@@ -1,13 +1,11 @@
 package com.veselov.andrew.tbw.ui.activities.fragments;
-// Android Level 2 Lesson 5
-// Homework 09-Jan-2019
+// Android Level 2 Lesson 6
+// Homework 12-Jan-2019
 // Andrew Veselov
 //
-// 1. Посвятите это время работе над вашим проектом. Ваше портфолио - это ваше лицо для будущих работодателей.
+// 1. Переделать запросы и обработку ответа в погодном приложении на Retrofit 2.
 //
-// 2. Доделайте те задания, которые не успели сделать к предыдущим урокам.
-//
-// 3*. Добавьте в ваш проект какие-нибудь новые фичи на ваше усмотрение.
+// 2. * Оживить погодное приложение картинками из Интернета.
 //
 
 import android.os.Bundle;
@@ -23,6 +21,8 @@ import android.widget.Toast;
 
 import com.veselov.andrew.tbw.R;
 import com.veselov.andrew.tbw.model.WorkoutList;
+
+import java.util.Objects;
 
 public class WorkoutAddExerciseFragment extends Fragment{
     private EditText workoutTitle;
@@ -59,7 +59,7 @@ public class WorkoutAddExerciseFragment extends Fragment{
                                 .addWorkout(workoutTitle.getText().toString(),
                                         workoutDescription.getText().toString(),
                                         workoutURL.getText().toString());
-                        getActivity().onBackPressed();
+                        Objects.requireNonNull(getActivity()).onBackPressed();
                     }
                     }
             };
